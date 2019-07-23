@@ -9,5 +9,5 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/purchase', ['uses' => 'ApiController@createOrder']);
     Route::get('/purchase/{user}', ['uses' => 'ApiController@getOrder']);
     Route::get('/waiting/{user}', ['uses' => 'ApiController@getWaiting']);
-    Route::put('/checkout/{purchaseID}', ['uses' => 'ApiController@checkOut']);
+    Route::get('/checkout/{purchaseID}', ['uses' => 'ApiController@checkOut']);
 });

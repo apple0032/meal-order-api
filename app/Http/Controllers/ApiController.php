@@ -18,8 +18,9 @@ class ApiController extends Controller
     public function getAllMeal() {
         
        $meal = Meal::get();
+       $response['result'] = $meal;
 
-       return response()->json($meal);
+       return response()->json($response);
 
     }
 
@@ -34,8 +35,9 @@ class ApiController extends Controller
     public function getMealByCategory($name) {
         
        $meal = Meal::where('category','=',$name)->get();
+       $response['result'] = $meal;
 
-       return response()->json($meal);
+       return response()->json($response);
 
     }
 
