@@ -176,6 +176,8 @@ class ApiController extends Controller
             $purchase->save();
         }
 
+        //test git pull on aws
+
         return response()->json($purchase);
     }
 
