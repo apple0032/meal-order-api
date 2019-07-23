@@ -25,7 +25,7 @@ class ApiController extends Controller
 
     public function getMealById($id) {
         
-       $meal = Meal::where('id','=',$id)->get();
+       $meal = Meal::where('id','=',$id)->first()->toArray();
 
        return response()->json($meal);
 
