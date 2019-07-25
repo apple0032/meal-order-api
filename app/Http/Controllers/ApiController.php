@@ -24,9 +24,20 @@ class ApiController extends Controller
 
     }
 
-    public function getMealById($id) {
+    public function getMealById($id,$userid) {
+        
+       //Step1 - Search in cart, find existed food qty & total price
+        $exist = Cart::where('user_id','=',$userid)
+            ->where('meal_id', '=',$id)
+            ->first();
+        if($exist == null){
+            $exist = 'null';
+        } else {
+            $exist->toarray();
+        }
         
        $meal = Meal::where('id','=',$id)->first()->toArray();
+       $meal['exist'] = $exist;
 
        return response()->json($meal);
 
@@ -52,24 +63,18 @@ class ApiController extends Controller
             ->where('meal_id', '=',$request->meal_id)
             ->first();
 
-        if($exist == null) {
-            $cart = new Cart();
-            $cart->meal_id = $request->meal_id;
-            $cart->qty = $request->qty;
-            $cart->single_price = $single;
-            $cart->total_price = $total;
-            $cart->user_id = $request->user_id;
-            $cart->save();
-        } else {
-            //if exist, update it;
-            $qty = $request->qty + $exist->qty;
-            $total_price = $exist->total_price + $total;
-
-            $exist->qty = $qty;
-            $exist->total_price = $total_price;
-            $exist->save();
-            $cart = $exist;
+        if($exist != null) {
+            //if exist, delete it;
+            $exist->delete();
         }
+        
+        $cart = new Cart();
+        $cart->meal_id = $request->meal_id;
+        $cart->qty = $request->qty;
+        $cart->single_price = $single;
+        $cart->total_price = $total;
+        $cart->user_id = $request->user_id;
+        $cart->save();
         
        return response()->json($cart);
 
