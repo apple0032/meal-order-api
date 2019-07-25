@@ -56,7 +56,8 @@ class ApiController extends Controller
         
        $meal = Meal::where('id','=',$request->meal_id)->first();
        $single = $meal->price;
-       $total = ($meal->price) * ($request->qty);
+       $total = $request->total;
+       $qty = $total/$single;
 
        //Check for duplicate in cart
         $exist = Cart::where('user_id','=',$request->user_id)
@@ -70,7 +71,7 @@ class ApiController extends Controller
         
         $cart = new Cart();
         $cart->meal_id = $request->meal_id;
-        $cart->qty = $request->qty;
+        $cart->qty = $qty;
         $cart->single_price = $single;
         $cart->total_price = $total;
         $cart->user_id = $request->user_id;
