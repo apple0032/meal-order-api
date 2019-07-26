@@ -17,13 +17,24 @@ class ApiController extends Controller
 {
     public function getAllMeal() {
         
-       $meal = Meal::get();
+        $meal = null;
+        if(isset($_GET['q'])){
+            if($_GET['q'] != null){
+                $key = $_GET['q'];
+                $meal = Meal::where('name', 'LIKE', '%'.$key.'%')->get();
+            }
+        }
+        
+        if($meal == null){
+            $meal = Meal::get();
+        }
+        
        $response['result'] = $meal;
 
        return response()->json($response);
 
     }
-
+    
     public function getMealById($id,$userid) {
         
        //Step1 - Search in cart, find existed food qty & total price
