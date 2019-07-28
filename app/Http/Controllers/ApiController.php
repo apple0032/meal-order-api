@@ -135,7 +135,18 @@ class ApiController extends Controller
                 ->where('user_id','=',$user)
                 ->get();
 
+        $total = DB::table('cart')
+            ->where('user_id','=',$user)
+            ->sum('cart.total_price');
+
+        $qty = DB::table('cart')
+            ->where('user_id','=',$user)
+            ->sum('cart.qty');
+
+        $response['total'] = $total;
+        $response['qty'] = $qty;
         $response['result'] = $cart;
+
 
         return response()->json($response);
     }
