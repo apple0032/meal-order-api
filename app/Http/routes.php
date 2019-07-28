@@ -10,4 +10,5 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/purchase/{user}', ['uses' => 'ApiController@getOrder']);
     Route::get('/waiting/{user}', ['uses' => 'ApiController@getWaiting']);
     Route::get('/checkout/{purchaseID}', ['uses' => 'ApiController@checkOut']);
+    Route::post('/delete', ['uses' => 'ApiController@deleteFromCart']);
 });

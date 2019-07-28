@@ -203,6 +203,15 @@ class ApiController extends Controller
     }
 
 
+    public function deleteFromCart(Request $request){
+        $exist = Cart::where('user_id','=',$request->user_id)
+            ->where('meal_id', '=',$request->meal_id)
+            ->first();
+        $exist->delete();
+
+        return response()->json($exist);
+    }
+
 
     protected function validator(array $data)
     {
