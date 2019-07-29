@@ -160,6 +160,7 @@ class ApiController extends Controller
             ->leftJoin('purchase_item','purchase.id','=','purchase_item.purchase_id')
             ->leftJoin('meal','purchase_item.meal_id','=','meal.id')
             ->where('purchase.user_id','=',$user)
+            ->where('status','=','pending')
             ->get();
 
         $group = array();
@@ -198,7 +199,9 @@ class ApiController extends Controller
             ->where('status','=','pending')
             ->get();
 
-        return response()->json($cart);
+        $result['result'] = $cart;
+
+        return response()->json($result);
     }
 
 
