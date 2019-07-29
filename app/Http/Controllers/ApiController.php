@@ -9,6 +9,8 @@ use App\Meal;
 use App\Cart;
 use App\Purchase;
 use App\PurchaseItem;
+use App\User;
+use App\Favourite;
 use Validator;
 use Session;
 use DB;
@@ -223,7 +225,62 @@ class ApiController extends Controller
         return response()->json($exist);
     }
 
+    public function login(Request $request){
+        
+        $user = User::where('email','=',$request->email)
+                ->where('password', '=',$request->password)
+                ->first();
+        
+        if($user != null){
+            $result['result'] = 'success';
+            $result['info']['id'] = $user->id;
+            $result['info']['name'] = $user->name;
+        } else {
+            $result['result'] = 'fail';
+        }
+        
+        return response()->json($result);
+    }
+    
+    
+    public function addFavourite(Request $request){
+        
+        $fav = new Favourite();
+        $fav->user_id = $request->user_id;
+        $fav->meal_id = $request->meal_id;
+        $fav->save();
+        
+        $result['favourite'] = $fav;
+        
+        return response()->json($result);
+    }
+    
+    
+    public function removeFavourite(Request $request){
+        
+        $fav = Favourite::where('id','=',$request->fav_id)->first();
+        $fav->delete();
+        
+        $result['deleted'] = $fav;
+        
+        return response()->json($result);
+    }
 
+    
+    public function getFavourite($userid){
+
+        $fav = DB::table('favourite')
+                ->leftJoin('meal','favourite.meal_id','=','meal.id')
+                ->where('user_id','=',$userid)
+                ->get();
+        
+
+        $result['fav'] = $fav;
+        
+       return response()->json($result);
+    }
+    
+    
     protected function validator(array $data)
     {
         //print_r($data);die();
