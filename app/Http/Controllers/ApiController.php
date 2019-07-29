@@ -188,7 +188,9 @@ class ApiController extends Controller
             }
         }
 
-        return response()->json($group);
+        $response['result'] = $group;
+
+        return response()->json($response);
     }
 
 
