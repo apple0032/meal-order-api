@@ -182,6 +182,7 @@ class ApiController extends Controller
                     $status = $it->status;
                 }
 
+                $group[$k]['purchaseID'] = $k;
                 $group[$k]['total_items'] = $tl_item;
                 $group[$k]['total_price'] = $tl_price;
                 $group[$k]['datetime'] = $date;
