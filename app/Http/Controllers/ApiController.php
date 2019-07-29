@@ -188,7 +188,13 @@ class ApiController extends Controller
             }
         }
 
-        $response['result'] = $group;
+        $arr = array();
+        foreach ($group as $k => $v){
+            $arr[] = $v;
+        }
+        //print_r($arr);die();
+
+        $response['result'] = $arr;
 
         return response()->json($response);
     }
