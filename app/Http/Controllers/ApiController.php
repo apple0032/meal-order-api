@@ -161,6 +161,7 @@ class ApiController extends Controller
             ->leftJoin('meal','purchase_item.meal_id','=','meal.id')
             ->where('purchase.user_id','=',$user)
             ->where('status','=','pending')
+            ->orderby('purchase.created_at','DESC')
             ->get();
 
         $group = array();
