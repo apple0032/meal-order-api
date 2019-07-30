@@ -16,4 +16,5 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/fav', ['uses' => 'ApiController@addFavourite']);
     Route::post('/fav-rm', ['uses' => 'ApiController@removeFavourite']);
     Route::post('/login', ['uses' => 'ApiController@login']);
+    Route::post('/register', ['uses' => 'ApiController@register']);
 });

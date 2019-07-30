@@ -161,8 +161,15 @@ class ApiController extends Controller
             ->leftJoin('meal','purchase_item.meal_id','=','meal.id')
             ->where('purchase.user_id','=',$user)
             ->where('status','=','pending')
-            ->orderby('purchase.created_at','DESC')
-            ->get();
+            ->orderby('purchase.created_at','DESC');
+        
+         if(isset($_GET['q'])){
+            if($_GET['q'] != null){
+                $purchase = $purchase->where('purchase.id','=',$_GET['q']);
+            }
+         }
+            
+        $purchase=$purchase->get();
 
         $group = array();
         foreach ($purchase as $p){
@@ -264,6 +271,18 @@ class ApiController extends Controller
         } else {
             $result['result'] = 'fail';
         }
+        
+        return response()->json($result);
+    }
+    
+    public function register(Request $request){
+        
+        $user = new User();
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->save();        
+        
+        $result['result'] = $user;
         
         return response()->json($result);
     }
