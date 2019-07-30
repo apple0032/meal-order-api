@@ -11,6 +11,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/waiting/{user}', ['uses' => 'ApiController@getWaiting']);
     Route::get('/checkout/{purchaseID}', ['uses' => 'ApiController@checkOut']);
     Route::post('/delete', ['uses' => 'ApiController@deleteFromCart']);
+    Route::post('/delete-all', ['uses' => 'ApiController@deleteAllFromCart']);
     Route::get('/fav/{userID}', ['uses' => 'ApiController@getFavourite']);
     Route::post('/fav', ['uses' => 'ApiController@addFavourite']);
     Route::post('/fav-rm', ['uses' => 'ApiController@removeFavourite']);

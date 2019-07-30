@@ -237,6 +237,19 @@ class ApiController extends Controller
 
         return response()->json($exist);
     }
+    
+    public function deleteAllFromCart(Request $request){
+        $carts = Cart::where('user_id','=',$request->user_id)
+            ->get();
+        
+        foreach($carts as $cart){
+            $cart->delete();
+        }
+
+        $result['deleted'] = $carts;
+
+        return response()->json($result);
+    }
 
     public function login(Request $request){
         
