@@ -210,14 +210,22 @@ class ApiController extends Controller
     }
 
 
-    public function getWaiting($user) {
+//    public function getWaiting($user) {
+//
+//        $cart = DB::table('purchase')
+//            ->where('user_id','=',$user)
+//            ->where('status','=','pending')
+//            ->get();
+//
+//        $result['result'] = $cart;
+//
+//        return response()->json($result);
+//    }
 
-        $cart = DB::table('purchase')
-            ->where('user_id','=',$user)
-            ->where('status','=','pending')
-            ->get();
+    public function getOrderStatus($purchaseId){
 
-        $result['result'] = $cart;
+        $purchase = Purchase::where('id','=',$purchaseId)->first();
+        $result['result'] = $purchase->status;
 
         return response()->json($result);
     }
