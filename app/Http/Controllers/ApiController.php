@@ -190,6 +190,7 @@ class ApiController extends Controller
                 }
 
                 $group[$k]['purchaseID'] = $k;
+                $group[$k]['total_meal'] = count($gp['items']);
                 $group[$k]['total_items'] = $tl_item;
                 $group[$k]['total_price'] = $tl_price;
                 $group[$k]['datetime'] = $date;
