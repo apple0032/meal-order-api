@@ -289,7 +289,8 @@ class ApiController extends Controller
         $user = new User();
         $user->email = $request->email;
         $user->password = $request->password;
-        $user->save();        
+        $user->name = $request->name;
+        $user->save();
         
         $result['result'] = $user;
         
