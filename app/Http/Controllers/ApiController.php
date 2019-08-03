@@ -285,14 +285,18 @@ class ApiController extends Controller
     }
     
     public function register(Request $request){
-        
-        $user = new User();
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $user->name = $request->name;
-        $user->save();
-        
-        $result['result'] = $user;
+
+        if($request->email == null || $request->password == null || $request->name == null){
+            die('Failed');
+        } else {
+            $user = new User();
+            $user->email = $request->email;
+            $user->password = $request->password;
+            $user->name = $request->name;
+            $user->save();
+
+            $result['result'] = $user;
+        }
         
         return response()->json($result);
     }
