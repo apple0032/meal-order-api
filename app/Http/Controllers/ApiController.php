@@ -329,12 +329,24 @@ class ApiController extends Controller
     public function getFavourite($userid){
 
         $fav = DB::table('favourite')
-                ->leftJoin('meal','favourite.meal_id','=','meal.id')
-                ->where('user_id','=',$userid)
-                ->get();
-        
+            ->leftJoin('meal','favourite.meal_id','=','meal.id')
+            ->where('user_id','=',$userid);
 
-        $result['fav'] = $fav;
+        if(isset($_GET['q'])){
+            if($_GET['q'] != null){
+                $fav = $fav->where('meal_id','=',$_GET['q'])->first();
+            } else {
+                $fav = $fav->get();
+            }
+        } else {
+            $fav = $fav->get();
+        }
+
+        if($fav != null) {
+            $result['fav'] = $fav;
+        } else {
+            $result['fav'] = "null";
+        }
         
        return response()->json($result);
     }
