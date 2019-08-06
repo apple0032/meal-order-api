@@ -48,9 +48,22 @@ class ApiController extends Controller
         } else {
             $exist->toarray();
         }
+
+        $fav = DB::table('favourite')
+            ->leftJoin('meal','favourite.meal_id','=','meal.id')
+            ->where('user_id','=',$userid)
+            ->where('meal_id','=',$id)
+            ->get();
+
+        if($fav == null){
+            $fav = 'false';
+        } else {
+            $fav = 'true';
+        }
         
        $meal = Meal::where('id','=',$id)->first()->toArray();
        $meal['exist'] = $exist;
+       $meal['fav'] = $fav;
 
        return response()->json($meal);
 
@@ -330,23 +343,11 @@ class ApiController extends Controller
 
         $fav = DB::table('favourite')
             ->leftJoin('meal','favourite.meal_id','=','meal.id')
-            ->where('user_id','=',$userid);
+            ->where('user_id','=',$userid)
+            ->get();
 
-        if(isset($_GET['q'])){
-            if($_GET['q'] != null){
-                $fav = $fav->where('meal_id','=',$_GET['q'])->first();
-            } else {
-                $fav = $fav->get();
-            }
-        } else {
-            $fav = $fav->get();
-        }
+        $result['fav'] = $fav;
 
-        if($fav != null) {
-            $result['fav'] = $fav;
-        } else {
-            $result['fav'] = "null";
-        }
         
        return response()->json($result);
     }
