@@ -330,7 +330,7 @@ class ApiController extends Controller
     
     public function removeFavourite(Request $request){
         
-        $fav = Favourite::where('id','=',$request->fav_id)->first();
+        $fav = Favourite::where('meal_id','=',$request->meal_id)->where('user_id','=',$request->user_id)->first();
         $fav->delete();
         
         $result['deleted'] = $fav;
