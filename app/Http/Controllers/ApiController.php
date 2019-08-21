@@ -173,7 +173,8 @@ class ApiController extends Controller
             ->leftJoin('purchase_item','purchase.id','=','purchase_item.purchase_id')
             ->leftJoin('meal','purchase_item.meal_id','=','meal.id')
             ->where('purchase.user_id','=',$user)
-            ->where('status','=','pending')
+            //->where('status','=','pending')
+            ->whereIn('status', array("pending", "deliver"))
             ->orderby('purchase.created_at','DESC');
         
          if(isset($_GET['q'])){
