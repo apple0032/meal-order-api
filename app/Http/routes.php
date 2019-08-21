@@ -17,4 +17,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/fav-rm', ['uses' => 'ApiController@removeFavourite']);
     Route::post('/login', ['uses' => 'ApiController@login']);
     Route::post('/register', ['uses' => 'ApiController@register']);
+
+    Route::get('/', 'PagesController@getIndex');
+    Route::get('/admin/purchase', ['uses' => 'PagesController@getOrder']);
+    Route::get('/admin/purchase/{id}', ['uses' => 'PagesController@updateStatus']);
+    Route::get('/users', 'PagesController@getUser');
 });

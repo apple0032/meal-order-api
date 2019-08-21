@@ -1,7 +1,7 @@
       <hr>
 
       <div id="footer_text">
-            <p class="text-center">Copyright KenIp-2019 - All Rights Reserved</p>
+            <p class="text-center">Copyright KenIp-2019-AUG - All Rights Reserved</p>
             <span class="power_stat">
                         Powered by -
                           <i class="fab fa-php" data-toggle="tooltip" title="PHP"></i>

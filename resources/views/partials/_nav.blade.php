@@ -5,7 +5,7 @@
     font-family: 'Raleway';
     text-align: center;
     margin-bottom: 30px;
-    font-size:16px;
+    font-size:11px;
   }
 
   #footer_text i{
@@ -51,7 +51,7 @@
     font-family: 'Noto Sans TC', sans-serif !important;
   }
   .navbar-default {
-    background-color: #2d6098 !important;
+    background-color: #5d748d !important;
     border: 0px !important;
     border-bottom: 1px solid black !important;
     border-radius: 0px !important;
@@ -99,6 +99,10 @@
   .dropdown-menu{
     font-size: 16px;
   }
+
+  .fa-utensils{
+    margin-right: 5px;
+  }
 </style>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -110,36 +114,17 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{URL::to('/')}}"><i class="fab fa-battle-net"></i> Station Management System</a>
+      <a class="navbar-brand" href="{{URL::to('/')}}"><i class="fas fa-utensils"></i> Order Management System</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="{{ Request::is('/') ? "activated" : "" }} cool-link home_btn"><a href="{{URL::to('/')}}">Home</a></li>
-        <li class="cool-link create_new_station"><a href="">Create</a></li>
+        <li class="{{ Request::is('/') ? "activated" : "" }} cool-link home_btn"><a href="{{URL::to('/')}}">Order</a></li>
+        <li class="cool-link"><a href="users">Users</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="cool-link convert_navbtn"><a href="{{URL::to('/')}}/convert-page">Convert</a></li>
-        <li class="cool-link convert_navbtn"><a href="{{URL::to('/')}}/swagger.html">Documentation</a></li>
-
-        @if (Auth::check())
-
-          <li class="dropdown">
-            <a href="/" class="dropdown-toggle nav_user_box" data-toggle="dropdown" role="button" aria-haspopup="true"
-               aria-expanded="false"><i class="fas fa-user-circle"></i> &nbsp; {{ Auth::user()->name }} <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="{{URL::to('/')}}/auth/logout"><i class="fas fa-sign-out-alt"></i> &nbsp; Logout</a></li>
-            </ul>
-          </li>
-        
-        @else
-
-          <li class="cool-link login_btn"><a href="{{URL::to('/')}}/auth/login">Login</a></li>
-          <li class="cool-link"><a href="{{URL::to('/')}}/auth/register">Register</a></li>
-
-        @endif
-
+        {{--<li class="cool-link convert_navbtn"><a href="{{URL::to('/')}}/swagger.html">Documentation</a></li>--}}
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
