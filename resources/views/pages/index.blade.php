@@ -110,7 +110,7 @@
     }
 
     .foodlist{
-        padding: 10px 0px 0px 0px !important;
+        padding: 10px 10px 0px 0px !important;
     }
 </style>
 @section('content')
@@ -125,10 +125,11 @@
                 <th>Total Meal</th>
                 <th>Total Items</th>
                 <th>Total Price</th>
-                <th>Food</th>
+                <th>Foods</th>
                 <th>Order Time</th>
-                <th>Current Status</th>
-                <th>Deliver Action</th>
+                <th>Expected Delivery</th>
+                <th>Status</th>
+                <th>Deliver</th>
             </tr>
             </thead>
             <tbody>
@@ -148,6 +149,7 @@
                     </ul>
                 </td>
                 <td class="organisationname">{{$or['datetime']}}</td>
+                <td class="organisationname">{{$or['waiting']}}</td>
                 <td class="organisationname">
                     <b class="status">{{$or['status']}}</b>
                 </td>

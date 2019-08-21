@@ -59,6 +59,7 @@ class PagesController extends Controller {
                     $tl_price += $it->total_price;
                     $date = $it->created_at;
                     $status = $it->status;
+                    $wait = $it->waiting;
                 }
 
                 $group[$k]['purchaseID'] = $k;
@@ -67,6 +68,7 @@ class PagesController extends Controller {
                 $group[$k]['total_items'] = $tl_item;
                 $group[$k]['total_price'] = $tl_price;
                 $group[$k]['datetime'] = $date;
+                $group[$k]['waiting'] = $wait;
                 $group[$k]['status'] = $status;
             }
         }
