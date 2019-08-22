@@ -121,7 +121,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="{{ Request::is('/') ? "activated" : "" }} cool-link home_btn"><a href="{{URL::to('/')}}">Order</a></li>
-        <li class="cool-link"><a href="users">Users</a></li>
+        <li class="{{ Request::getPathInfo() == "/users" ? "activated" : ""}} cool-link"><a href="users">Users</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {{--<li class="cool-link convert_navbtn"><a href="{{URL::to('/')}}/swagger.html">Documentation</a></li>--}}
