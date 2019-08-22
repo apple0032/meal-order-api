@@ -14,7 +14,7 @@
 
   @media (min-width: 1300px){
     .container {
-      width: 1300px !important;
+      width: 1500px !important;
     }
   }
 

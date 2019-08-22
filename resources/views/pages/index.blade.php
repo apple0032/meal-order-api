@@ -111,7 +111,7 @@
 
     .foodlist{
         min-width: 230px;
-        padding: 0px !important;
+        padding: 10px 10px 0px 0px !important;
     }
 
     .rthead{
