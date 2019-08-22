@@ -110,8 +110,12 @@
     }
 
     .foodlist{
-        min-width: 300px;
-        padding: 10px 10px 0px 0px !important;
+        min-width: 230px;
+        padding: 0px !important;
+    }
+
+    .rthead{
+        font-size: 15px;
     }
 </style>
 @section('content')
@@ -119,7 +123,7 @@
     <div class="page">
         <h1><i class="fas fa-hamburger"></i> Pending Order</h1>
         <table class="layout display responsive-table">
-            <thead>
+            <thead class="rthead">
             <tr>
                 <th>ID</th>
                 <th>User-ID</th>
@@ -195,6 +199,8 @@ function deliver(id) {
                 console.log(data);
                 $("#order-"+id+" .status").html("DONE");
                 $("#order-"+id+" .status").css("color","green");
+
+                $("#order-"+id).css("opacity","0.2");
             }
         });
 
