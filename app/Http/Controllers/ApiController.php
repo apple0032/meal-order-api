@@ -175,8 +175,9 @@ class ApiController extends Controller
             ->where('purchase.user_id','=',$user)
             //->where('status','=','pending')
             ->whereIn('status', array("pending", "deliver", "done"))
-            ->orderby('purchase.created_at','DESC')
-            ->orderby('purchase.status','DESC');
+            //->orderby('purchase.status','DESC')
+            ->orderBy(DB::raw('FIELD(purchase.status, "pending", "deliver", "done")'))
+            ->orderby('purchase.created_at','DESC');
         
          if(isset($_GET['q'])){
             if($_GET['q'] != null){
