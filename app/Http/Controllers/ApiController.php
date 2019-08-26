@@ -23,12 +23,12 @@ class ApiController extends Controller
         if(isset($_GET['q'])){
             if($_GET['q'] != null){
                 $key = $_GET['q'];
-                $meal = Meal::where('name', 'LIKE', '%'.$key.'%')->orderby('id','DESC')->get();
+                $meal = Meal::where('name', 'LIKE', '%'.$key.'%')->get();
             }
         }
         
         if($meal == null){
-            $meal = Meal::get();
+            $meal = Meal::orderby('id','DESC')->get();
         }
         
        $response['result'] = $meal;
